@@ -1,0 +1,87 @@
+package goodee.gdj58.online.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import goodee.gdj58.online.service.IdService;
+import goodee.gdj58.online.service.StudentService;
+import goodee.gdj58.online.vo.Student;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+public class StudentController {
+	@Autowired StudentService studentService;
+	@Autowired IdService idService; 	
+
+	
+	//student
+	// 삭제 
+	@GetMapping("/employee/student/deleteStudent")
+	public String deleteStudent(@RequestParam("studentNo") int studentNo) {
+		studentService.deleteStudent(studentNo);
+		return "redirect:/employee/student/studentList";
+	}
+	
+	// 학생추가
+	@GetMapping("/employee/student/addStudent")
+	public String addStudent() {
+		return "employee/student/addStudent"; // forword
+	}
+	@PostMapping("/employee/student/addStudent")
+	public String addStudent(Model model, Student student) {
+		String idCheck = idService.getIdCheck(student.getStudentId());
+		if(idCheck != null) {
+			model.addAttribute("errorMsg", "중복된ID");
+			return "employee/student/addStudent";
+		}
+		
+		int row = studentService.addStudent(student);
+		// row == 1이면 입력성공
+		if(row == 0) {
+			model.addAttribute("errorMsg", "시스템에러로 등록실패");
+			return "employee/student/addStudent";
+		}
+		return "redirect:/employee/student/studentList"; // sendRedirect , CM -> C
+	}
+	
+	
+	// studentList
+	@GetMapping("/employee/student/studentList")
+	public String student(Model model 
+								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
+								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage 
+								, @RequestParam(value="searcWord", defaultValue = "") String searchWord) { 
+
+		log.debug(currentPage+" <-currentPage");
+		log.debug(rowPerPage+" <-rowPerPage");
+		log.debug(searchWord+" <-searchWord");		
+	
+		List<Student> list = studentService.getStudentList(currentPage, rowPerPage, searchWord);
+		int lastPage = studentService.studentCount(searchWord, currentPage, rowPerPage);
+		int endPage = 0;
+		if(currentPage == 1) {
+			endPage = currentPage+9;
+		} else {
+			endPage = currentPage+10;
+		}
+		if(endPage > lastPage) {
+			endPage = lastPage;
+		}		
+		// request.setAttribute("list", list);
+		model.addAttribute("list", list);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("endPage", endPage);
+		
+		return "employee/student/studentList";	
+	}	
+	
+}
