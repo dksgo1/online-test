@@ -2,6 +2,8 @@ package goodee.gdj58.online.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +21,27 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 	@Autowired StudentService studentService;
 	@Autowired IdService idService; 	
-
+	// 로그인
+	@GetMapping("/loginStudent")
+	public String loginStudent() {
+		return "loginStudent";
+	}
+	// 로그인 액션
+	@PostMapping("/loginStudent")
+	public String loginStudent(HttpSession session, Student student) {
+		Student resultStudent = studentService.login(student);
+		session.setAttribute("loginStudent", resultStudent);
+		return "redirect:/student/test/testList";
+	}
 	
-	//student
+	// logout
+	@GetMapping("/student/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/student/loginStudent";
+	}
+	
+	// employee/student
 	// 삭제 
 	@GetMapping("/employee/student/deleteStudent")
 	public String deleteStudent(@RequestParam("studentNo") int studentNo) {
@@ -65,7 +85,15 @@ public class StudentController {
 	
 		List<Student> list = studentService.getStudentList(currentPage, rowPerPage, searchWord);
 		int lastPage = studentService.studentCount(searchWord, currentPage, rowPerPage);
+		int startPage = 0;
 		int endPage = 0;
+	
+		if(currentPage != 1) {
+			startPage = currentPage+1;
+		} else {
+			startPage = 1;
+		}
+		
 		if(currentPage == 1) {
 			endPage = currentPage+9;
 		} else {
@@ -78,6 +106,7 @@ public class StudentController {
 		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("startPage", startPage);
 		model.addAttribute("lastPage", lastPage);
 		model.addAttribute("endPage", endPage);
 		

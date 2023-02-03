@@ -22,8 +22,45 @@ import lombok.extern.slf4j.Slf4j;
 public class TeacherController {
 	@Autowired TeacherService teacherService;
 	@Autowired IdService idService; 
-	
 	// teacher
+	// pw 수정폼
+	@GetMapping("/teacher/modifyTeacherPw")
+	public String modifyTeacherPw() {
+		return "teacher/modifyTeacherPw";
+	}
+	
+	// pw 수정액션
+	@PostMapping("/teacher/modifyTeacherPw")
+	public String modifyTeacherPw(HttpSession session
+							, @RequestParam(value="oldPw") String oldPw
+							, @RequestParam(value="newPw") String newPw) {
+		// 로그인 후 호출 가능
+		Teacher loginTeacher = (Teacher)session.getAttribute("loginTeacher");
+		teacherService.updateTeacherPw(loginTeacher.getTeacherNo(), oldPw, newPw);
+		
+		return "redirect:/teacher/test/testList";
+	}	
+	// 로그아웃
+	@GetMapping("/teacher/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/loginTeacher";
+	}
+	
+	// 로그인
+	@GetMapping("/loginTeacher")
+	public String loginEmp() {
+		return "teacher/loginTeacher";
+	}
+	// 로그인 액션
+	@PostMapping("/loginTeacher")
+	public String loginTeacher(HttpSession session, Teacher teacher) {
+		Teacher resultTeacher = teacherService.login(teacher);
+		session.setAttribute("loginTeacher", resultTeacher);
+		return "redirect:/teacher/test/testList";
+	}	
+	
+	// employee/teacher
 	// 삭제 
 	@GetMapping("/employee/teacher/deleteTeacher")
 	public String deleteTeacher(@RequestParam("teacherNo") int teacherNo) {
@@ -66,7 +103,15 @@ public class TeacherController {
 	
 		List<Teacher> list = teacherService.getTeacherList(currentPage, rowPerPage, searchWord);
 		int lastPage = teacherService.teacherCount(searchWord, currentPage, rowPerPage);
+		int startPage = 0;
 		int endPage = 0;
+
+		if(currentPage != 1) {
+			startPage = currentPage+1;
+		} else {
+			startPage = 1;
+		}		
+		
 		if(currentPage == 1) {
 			endPage = currentPage+9;
 		} else {
@@ -79,6 +124,7 @@ public class TeacherController {
 		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("startPage", startPage);
 		model.addAttribute("lastPage", lastPage);
 		model.addAttribute("endPage", endPage);		
 		return "employee/teacher/teacherList";	

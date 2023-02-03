@@ -17,7 +17,10 @@ public class StudentService {
 	@Autowired
 	private StudentMapper studentMapper;
 	
-	// student
+	public Student login(Student Student) {
+		return studentMapper.login(Student);
+	}	
+	// employee/student
 	public int studentCount(String searchWord, int currentPage, int rowPerPage) {
 		int count = studentMapper.studentCount(searchWord);
 		int lastPage = (int)Math.ceil((double)count / (double)rowPerPage);

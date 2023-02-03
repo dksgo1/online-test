@@ -54,6 +54,7 @@ public class EmployeeController {
 		return "redirect:/employee/empList";
 	}
 	
+	// logout
 	@GetMapping("/employee/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -101,7 +102,15 @@ public class EmployeeController {
 		log.debug(searchWord+" <-searchWord");
 		List<Employee> list = employeeService.getEmployeeList(currentPage, rowPerPage, searchWord);
 		int lastPage = employeeService.empCount(searchWord, currentPage, rowPerPage);
+		int startPage = 0;
 		int endPage = 0;
+		
+		if(currentPage != 1) {
+			startPage = currentPage+1;
+		} else {
+			startPage = 1;
+		}
+		
 		if(currentPage == 1) {
 			endPage = currentPage+9;
 		} else {
@@ -115,6 +124,7 @@ public class EmployeeController {
 		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchWord", searchWord);
+		model.addAttribute("startPage", startPage);
 		model.addAttribute("lastPage", lastPage);
 		model.addAttribute("endPage", endPage);
 		return "employee/empList";	

@@ -37,7 +37,7 @@
 		<c:if test="${currentPage > 1}">
 			<a href="${pageContext.request.contextPath}/employee/empList?currentPage=${currentPage-1}&searchWord=${searchWord}">이전</a>
 		</c:if>
-		<c:forEach var="i" begin="${currentPage}" end="${endPage}" step="1">
+		<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 			<a href="${pageContext.request.contextPath}/employee/empList?currentPage=${i}&searchWord=${searchWord}">${i}</a>
 		</c:forEach>
 		<c:if test="${currentPage < lastPage}">

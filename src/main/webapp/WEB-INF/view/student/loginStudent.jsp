@@ -4,21 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 	<!-- 로그인 전 -->
-	<c:if test="${loginTeacher == null}">
+	<c:if test="${loginStudent == null}">
 		<h1>로그인</h1>
-		<form method="post" action="${pageContext.request.contextPath}/loginTeacher">
+		<form method="post" action="${pageContext.request.contextPath}/loginStudent">
 			<table border="1">
 				<tr>
 	          		<td>teacherId</td>
-		          	<td><input type="text" name="teacherId"></td>
+		          	<td><input type="text" name="studentId"></td>
 	       		</tr>
 	       		<tr>
 	       		 	<td>teacherPw</td>
-	          		<td><input type="password" name="teacherPw"></td>
+	          		<td><input type="password" name="studentPw"></td>
 				</tr>
 		    </table>
 		    <button type="submit">로그인</button>
@@ -26,9 +26,9 @@
 	</c:if>
 	
 	<!-- 로그인 후 -->
-	<c:if test="${loginTeacher != null}">
-		${loginTeacher.teacherName}님 반갑습니다
-		<a href="${pageContext.request.contextPath}/teacher/logout">로그아웃</a>
+	<c:if test="${loginStudent != null}">
+		${loginStudent.studentName}님 반갑습니다
+		<a href="${pageContext.request.contextPath}/student/logout">로그아웃</a>
 	</c:if>
 </body>
 </html>

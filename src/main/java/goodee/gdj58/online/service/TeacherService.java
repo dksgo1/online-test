@@ -1,7 +1,6 @@
 package goodee.gdj58.online.service;
 
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +16,21 @@ import goodee.gdj58.online.vo.Teacher;
 public class TeacherService {
 	@Autowired
 	private TeacherMapper teacherMapper;
-	
+
 	// teacher
+	public int updateTeacherPw(int teacherNo, String oldPw, String newPw) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("teacherNo", teacherNo);
+		paramMap.put("oldPw", oldPw);
+		paramMap.put("newPw", newPw);
+		return teacherMapper.updateTeacherPw(paramMap);
+	}	
+	
+	public Teacher login(Teacher teacher) {
+		return teacherMapper.login(teacher);
+	}
+		
+	// employee/teacher
 	public int teacherCount(String searchWord, int currentPage, int rowPerPage) {
 		int count = teacherMapper.teacherCount(searchWord);
 		int lastPage = (int)Math.ceil((double)count / (double)rowPerPage);
@@ -41,6 +53,7 @@ public class TeacherService {
 		paramMap.put("beginRow", beginRow);
 		paramMap.put("rowPerPage", rowPerPage);
 		paramMap.put("searchWord", searchWord);
+		
 		return teacherMapper.selectTeacherList(paramMap);
 	}
 }

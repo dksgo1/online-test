@@ -7,8 +7,8 @@
 <title></title>
 </head>
 <body>
-	<h1>${loginEmp.empName}님 비밀번호 수정</h1>
-	<form method="post" action="${pageContext.request.contextPath}/employee/modifyEmpPw">
+	<h1>${loginTeacher.teacherName}님 비밀번호 수정</h1>
+	<form method="post" action="${pageContext.request.contextPath}/teacher/modifyTeacherPw">
 		<table border="1">
 			<tr>
 				<td>비밀번호</td>

@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TeacherLoginFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
+		log.debug("\u001B[31m"+"TeacherLoginFilter");
 		if(request instanceof HttpServletRequest) {
 			HttpSession session	= ((HttpServletRequest)request).getSession();
 			if(session.getAttribute("loginTeacher") == null) {
