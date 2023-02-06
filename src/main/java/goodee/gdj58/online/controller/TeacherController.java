@@ -38,7 +38,7 @@ public class TeacherController {
 		Teacher loginTeacher = (Teacher)session.getAttribute("loginTeacher");
 		teacherService.updateTeacherPw(loginTeacher.getTeacherNo(), oldPw, newPw);
 		
-		return "redirect:/teacher/test/testList";
+		return "redirect:/teacher/test/teacherTestList";
 	}	
 	// 로그아웃
 	@GetMapping("/teacher/logout")
@@ -57,7 +57,7 @@ public class TeacherController {
 	public String loginTeacher(HttpSession session, Teacher teacher) {
 		Teacher resultTeacher = teacherService.login(teacher);
 		session.setAttribute("loginTeacher", resultTeacher);
-		return "redirect:/teacher/test/testList";
+		return "redirect:/teacher/test/teacherTestList";
 	}	
 	
 	// employee/teacher

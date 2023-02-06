@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import goodee.gdj58.online.service.IdService;
 import goodee.gdj58.online.service.StudentService;
+import goodee.gdj58.online.vo.Employee;
 import goodee.gdj58.online.vo.Student;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,24 +22,44 @@ import lombok.extern.slf4j.Slf4j;
 public class StudentController {
 	@Autowired StudentService studentService;
 	@Autowired IdService idService; 	
+	// student
+	
+	// pw 수정폼
+	@GetMapping("/student/modifyStudentPw")
+	public String modifyStudentPw() {
+		return "student/modifyStudentPw";
+	}
+	
+	// pw 수정액션
+	@PostMapping("/student/modifyStudentPw")
+	public String modifyStudentPw(HttpSession session
+							, @RequestParam(value="oldPw") String oldPw
+							, @RequestParam(value="newPw") String newPw) {
+		// 로그인 후 호출 가능
+		Student loginStudent = (Student)session.getAttribute("loginStudent");
+		studentService.updateStudentPw(loginStudent.getStudentNo(), oldPw, newPw);
+		
+		return "redirect:/student/test/studentTestList";
+	}	
+	
 	// 로그인
 	@GetMapping("/loginStudent")
 	public String loginStudent() {
-		return "loginStudent";
+		return "student/loginStudent";
 	}
 	// 로그인 액션
 	@PostMapping("/loginStudent")
 	public String loginStudent(HttpSession session, Student student) {
 		Student resultStudent = studentService.login(student);
 		session.setAttribute("loginStudent", resultStudent);
-		return "redirect:/student/test/testList";
+		return "redirect:/student/test/studentTestList";
 	}
 	
 	// logout
 	@GetMapping("/student/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/student/loginStudent";
+		return "redirect:/loginStudent";
 	}
 	
 	// employee/student

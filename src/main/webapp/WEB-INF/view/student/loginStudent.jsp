@@ -13,11 +13,11 @@
 		<form method="post" action="${pageContext.request.contextPath}/loginStudent">
 			<table border="1">
 				<tr>
-	          		<td>teacherId</td>
+	          		<td>studentId</td>
 		          	<td><input type="text" name="studentId"></td>
 	       		</tr>
 	       		<tr>
-	       		 	<td>teacherPw</td>
+	       		 	<td>studentPw</td>
 	          		<td><input type="password" name="studentPw"></td>
 				</tr>
 		    </table>
