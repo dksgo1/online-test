@@ -17,6 +17,16 @@ public class QuestionService {
 	@Autowired
 	private QuestionMapper questionMapper;
 
+	public List<Map<String, Object>> getStudentQuestionList(int testNo, int currentPage, int rowPerPage){
+		int beginRow = (currentPage-1)*rowPerPage;
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("questionNo", testNo);
+		paramMap.put("beginRow", beginRow);
+		paramMap.put("rowPerPage", rowPerPage);
+		
+		return questionMapper.selectStudentQuestionList(paramMap);
+	}
+	
 	public int modifyQuestion(Question question) {
 		return questionMapper.updateQuestion(question);
 	}

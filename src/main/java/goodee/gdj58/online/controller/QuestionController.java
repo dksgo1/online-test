@@ -1,6 +1,7 @@
 package goodee.gdj58.online.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,29 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class QuestionController {
 	@Autowired QuestionService questionService;	
-	//teacherQuestion
+	// studentQuestion
+	@GetMapping("/student/test/question/studentQuestionList")
+	public String studentQustionList(Model model 
+								, @RequestParam("testNo") int testNo
+								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
+								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage) { 
+			
+		// int currentPage = request.getParameter("currentPage");
+		log.debug(currentPage+" <-currentPage");
+		log.debug(rowPerPage+" <-rowPerPage");		
+		
+		List<Map<String, Object>> list = questionService.getStudentQuestionList(testNo, currentPage, rowPerPage);
+		log.debug(list+" <- studentQustionList");
+		
+		model.addAttribute("list", list);
+		model.addAttribute("testNo", testNo);
+		model.addAttribute("currentPage", currentPage);
+	
+		return "student/test/question/studentQuestionList";	
+	}
+
+				
+	// teacherQuestion
 	// 수정
 	@GetMapping("/teacher/test/question/modifyQuestion")
 	public String modifyQuestion(Model model
@@ -62,11 +85,12 @@ public class QuestionController {
 		log.debug(rowPerPage+" <-rowPerPage");
 	
 		List<Question> list =questionService.getTeacherQuestionList(testNo, currentPage, rowPerPage);
-		log.debug(list+" <-list");
+		log.debug(list+" <- teacherList");
 		// request.setAttribute("list", list);
 		model.addAttribute("testNo", testNo);
 		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
+	
 		return "teacher/test/question/teacherQuestionList";	
 	}
 }

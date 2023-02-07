@@ -2,9 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="goodee.gdj58.online.mapper.QuestionMapper">
 	
+	<!-- studetnQuestion -->
+	<select id="selectStudentQuestionList" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT 
+			q.question_no questionNo
+			, q.test_no testNo
+			, q.question_idx questionIdx
+			, q.question_title questionTitle
+			, e.example_no exampleNo
+			, e.example_idx exampleIdx
+			, e.example_title exampleTitle
+			, e.example_ox exampleOx
+		FROM question q INNER JOIN example e
+		ON q.question_no = e.question_no
+		WHERE q.question_no = #{questionNo}
+		ORDER BY question_idx ASC
+		LIMIT #{beginRow}, #{rowPerPage}
+	
+	</select>
+	
+	
+	<!-- teacherQuestion -->
 	<update id="updateQuestion" parameterType="goodee.gdj58.online.vo.Question">
-		update question
-		set question_idx = #{questionIdx}
+		UPDATE question
+		SET question_idx = #{questionIdx}
 			, question_title = #{questionTitle}
 		WHERE question_no = #{questionNo}	
 	</update>
@@ -30,7 +51,7 @@
 			, q.question_idx questionIdx
 			, q.question_title questionTitle
 		FROM test t INNER JOIN question q
-		ON. t.test_no = q.test_no
+		ON t.test_no = q.test_no
 		WHERE t.test_no = #{testNo}
 		ORDER BY question_no ASC
 		LIMIT #{beginRow}, #{rowPerPage}				
