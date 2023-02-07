@@ -16,6 +16,10 @@ import goodee.gdj58.online.vo.Question;
 public class QuestionService {
 	@Autowired
 	private QuestionMapper questionMapper;
+
+	public int modifyQuestion(Question question) {
+		return questionMapper.updateQuestion(question);
+	}
 	
 	public int addQuestion(Question question) {
 		return questionMapper.insertQuestion(question);

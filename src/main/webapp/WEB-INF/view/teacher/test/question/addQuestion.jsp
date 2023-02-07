@@ -7,6 +7,10 @@
 <title></title>
 </head>
 <body>
+	<!-- teacherMenu include -->
+	<div>
+		<c:import url="/WEB-INF/view/teacher/inc/teacherMenu.jsp"></c:import>
+	</div>
 	<h1>문제추가</h1>
 	<form method="post" action="${pageContext.request.contextPath}/teacher/test/question/addQuestion">
 		<input type="hidden" name="testNo" value="${testNo}">

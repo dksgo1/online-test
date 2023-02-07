@@ -11,16 +11,17 @@
 	<div>
 		<c:import url="/WEB-INF/view/teacher/inc/teacherMenu.jsp"></c:import>
 	</div>
-	<h1>${loginTeacher.teacherName}님 비밀번호 수정</h1>
-	<form method="post" action="${pageContext.request.contextPath}/teacher/modifyTeacherPw">
-		<table border="1">
+	<h1>회차 수정</h1>
+	<form action="${pageContext.request.contextPath}/teacher/test/modifyTest" method="post">
+		<input type="hidden" name="testNo" value="${testNo}">
+		<table>
 			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" name="oldPw"></td>
+				<td>testTitle</td>
+				<td><input type="text" name="testTitle"></td>
 			</tr>
 			<tr>
-				<td>새로운 비밀번호</td>
-				<td><input type="password" name="newPw"></td>
+				<td>testDate</td>
+				<td><input type="date" name="testDate"></td>
 			</tr>
 		</table>
 		<button type="submit">수정</button>

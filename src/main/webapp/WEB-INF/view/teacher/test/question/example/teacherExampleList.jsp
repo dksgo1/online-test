@@ -7,14 +7,21 @@
 <title></title>
 </head>
 <body>
+	<!-- teacherMenu include -->
+	<div>
+		<c:import url="/WEB-INF/view/teacher/inc/teacherMenu.jsp"></c:import>
+	</div>
 	<h1>보기</h1>
-	<table border="1">
-		<tr>
-			<th>1번</th>
-			<th>2번</th>
-			<th>3번</th>
-			<th>4번</th>
-		</tr>
-	</table>
+	<a href="${pageContext.request.contextPath}/teacher/test/question/example/addExample?questionNo=${questionNo}">보기 추가</a>
+	<c:forEach var="e" items="${list}">
+		<table border="1">
+			<tr>
+				<td>${e.exampleIdx}번</td>
+				<td>${e.exampleTitle}</td>
+				<td>${e.exampleOx}</td>
+				<td><a href="${pageContext.request.contextPath}/teacher/test/question/example/modifyExample?questionNo=${questionNo}&exampleNo=${e.exampleNo}">수정</a></td>
+			</tr>
+		</table>
+	</c:forEach>
 </body>
 </html>

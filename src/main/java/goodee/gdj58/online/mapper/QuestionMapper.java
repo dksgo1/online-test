@@ -10,6 +10,7 @@ import goodee.gdj58.online.vo.Question;
 @Mapper
 public interface QuestionMapper {
 	// teacherQuestion
+	int updateQuestion(Question question);
 	int insertQuestion(Question question);
 	List<Question> selectTeacherQuestionList(Map<String, Object> paramMap);
 }

@@ -16,7 +16,7 @@
 		<tr>
 			<th>시험회차</th>
 			<th>시험이름</th>
-			<th>등록일</th>
+			<th>응시날짜</th>
 		</tr>
 		<c:forEach var="s" items="${list}">
 			<tr>

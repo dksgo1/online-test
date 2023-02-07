@@ -18,12 +18,14 @@
 			<th>시험회차</th>
 			<th>시험이름</th>
 			<th>응시날짜</th>
+			<th>수정</th>
 		</tr>
 		<c:forEach var="t" items="${list}">
 			<tr>
 				<td>${t.testNo}</td>
 				<td><a href="${pageContext.request.contextPath}/teacher/test/question/teacherQuestionList?testNo=${t.testNo}">${t.testTitle}</a></td>
 				<td>${t.testDate}</td>
+				<td><a href="${pageContext.request.contextPath}/teacher/test/modifyTest?testNo=${t.testNo}">수정</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -9,5 +9,8 @@ import goodee.gdj58.online.vo.Example;
 
 @Mapper
 public interface ExampleMapper {
-	List<Example> selectTeacherExampleList(int questionNo);
+	// teacherExample
+	int updateExample(Example example);
+	int insertExample(Example example);
+	List<Example> selectTeacherExampleList(Map<String, Object> paramMap);
 }

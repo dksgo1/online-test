@@ -7,6 +7,10 @@
 <title></title>
 </head>
 <body>
+	<!-- teacherMenu include -->
+	<div>
+		<c:import url="/WEB-INF/view/teacher/inc/teacherMenu.jsp"></c:import>
+	</div>
 	<h1>문제 리스트</h1>
 	<a href="${pageContext.request.contextPath}/teacher/test/question/addQuestion?testNo=${testNo}">문제 추가</a>
 	<table border="1">
@@ -19,7 +23,7 @@
 			<tr>
 				<td>${q.questionIdx}</td>
 				<td><a href="${pageContext.request.contextPath}/teacher/test/question/example/teacherExampleList?questionNo=${q.questionNo}">${q.questionTitle}</a></td>
-				<td><a href="${pageContext.request.contextPath}/teacher/test/question/modifyQuestion">문제 수정</a></td>
+				<td><a href="${pageContext.request.contextPath}/teacher/test/question/modifyQuestion?questionNo=${q.questionNo}&testNo=${q.testNo}">문제 수정</a></td>
 			</tr>
 		</c:forEach>	
 	</table>

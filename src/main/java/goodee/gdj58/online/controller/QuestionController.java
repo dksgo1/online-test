@@ -16,24 +16,42 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class QuestionController {
-	@Autowired QuestionService questionService;
+	@Autowired QuestionService questionService;	
 	//teacherQuestion
+	// 수정
+	@GetMapping("/teacher/test/question/modifyQuestion")
+	public String modifyQuestion(Model model
+			           			, @RequestParam("questionNo") int questionNo
+								, @RequestParam("testNo") int testNo) {
+		log.debug("\u001B[31m"+questionNo+" <- questionNo");
+		model.addAttribute("questionNo", questionNo);
+		model.addAttribute("testNo", testNo);
+		return "teacher/test/question/modifyQuestion";
+	}	
+	@PostMapping("/teacher/test/question/modifyQuestion")
+	public String modifyQuestion(Question question, @RequestParam("testNo") int testNo) {
+		questionService.modifyQuestion(question);
+		log.debug("\u001B[31m"+testNo+" <- modifyTestNo");
+		log.debug("\u001B[31m"+question+" <- modifyQuestion");
+		return "redirect:/teacher/test/question/teacherQuestionList?testNo="+testNo;
+	}
 	
+	// 추가
 	@GetMapping("/teacher/test/question/addQuestion")
 	public String addQuestion(Model model, @RequestParam("testNo") int testNo) {
 		model.addAttribute("testNo", testNo);
 		return "teacher/test/question/addQuestion";
 	}
 	@PostMapping("/teacher/test/question/addQuestion")
-	public String addTest(Question question) {		
+	public String addQuestion(Question question, @RequestParam("testNo") int testNo) {		
 		questionService.addQuestion(question);
 	
-		return "teacher/test/question/teacherQuestionList"; // sendRedirect , CM -> C
+		return "redirect:/teacher/test/question/teacherQuestionList?testNo="+testNo; // sendRedirect , CM -> C
 	}	
 	
 	
-	
-	@GetMapping("teacher/test/question/teacherQuestionList")
+	// 리스트
+	@GetMapping("/teacher/test/question/teacherQuestionList")
 	public String testList(Model model 
 								, @RequestParam("testNo") int testNo
 								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage

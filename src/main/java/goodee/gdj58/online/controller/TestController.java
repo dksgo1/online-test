@@ -37,6 +37,19 @@ public class TestController {
 		return "student/test/studentTestList";	
 	}
 	// teacher/test
+	@GetMapping("/teacher/test/modifyTest")
+	public String modifyTest(Model model, @RequestParam(value="testNo") int testNo) {
+		model.addAttribute("testNo", testNo);
+		return "teacher/test/modifyTest";
+	}
+	
+	@PostMapping("/teacher/test/modifyTest")
+	public String modifyTest(Test test) {
+		testService.modifyTest(test);
+		log.debug("\u001B[31m"+test+" <- modifyTest");
+		return "redirect:/teacher/test/teacherTestList";
+	}
+	
 	@GetMapping("/teacher/test/addTest")
 	public String addTest() {
 		return "teacher/test/addTest";
@@ -58,7 +71,7 @@ public class TestController {
 		log.debug(rowPerPage+" <-rowPerPage");
 	
 		List<Test> list =testService.getTestList(currentPage, rowPerPage);
-		log.debug(list+" <-list");
+		log.debug(list+" <- teacherTestlist");
 		
 		// request.setAttribute("list", list);
 		model.addAttribute("list", list);

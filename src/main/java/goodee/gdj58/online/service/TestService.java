@@ -17,11 +17,9 @@ public class TestService {
 	@Autowired
 	private TestMapper tsetMapper;
 	
-	public int addTest(Test test) {
-		return tsetMapper.insertTest(test);
-	}
+
 	
-	// teacher/test
+	// student/test
 	public List<Test> getStudentTestList(int currentPage, int rowPerPage) {
 		int beginRow = (currentPage-1)*rowPerPage;
 		Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -31,6 +29,14 @@ public class TestService {
 	}
 	
 	// teacher/test
+	public int modifyTest(Test test) {
+		return tsetMapper.updateTest(test);
+	}
+
+	public int addTest(Test test) {
+		return tsetMapper.insertTest(test);
+	}	
+
 	public List<Test> getTestList(int currentPage, int rowPerPage) {
 		int beginRow = (currentPage-1)*rowPerPage;
 		Map<String, Object> paramMap = new HashMap<String, Object>();
