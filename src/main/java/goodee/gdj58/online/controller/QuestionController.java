@@ -77,7 +77,7 @@ public class QuestionController {
 	@GetMapping("/teacher/test/question/teacherQuestionList")
 	public String testList(Model model 
 								, @RequestParam("testNo") int testNo
-								, @RequestParam("testTitle") String testTitle
+								, @RequestParam(value="testTitle", defaultValue = "") String testTitle
 								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
 								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage) { 
 								// int currentPage = request.getParameter("currentPage");

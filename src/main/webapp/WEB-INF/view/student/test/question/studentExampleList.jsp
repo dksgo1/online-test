@@ -8,10 +8,11 @@
 </head>
 <body>
 	<h1>${testTitle}</h1>
-	<form action="" method="post">
+	<form action="${pageContext.request.contextPath}/student/test/paper/testPaperList" method="get">
 		<table border="1">	
 			<c:forEach var="q" items="${list}">
 				<input type="hidden" name="questionNo" value="${q.questionNo}">
+				<input type="hidden" name="testNo" value="${testNo}">
 				<tr>
 					<th>${q.questionIdx}번</th>
 					<th>${q.questionTitle}</th>

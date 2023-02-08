@@ -20,9 +20,10 @@ public class TestController {
 	@Autowired TestService testService;
 	
 	// testPaperList
-	@GetMapping("student/test/paper/testPaperList")
+	@GetMapping("/student/test/paper/testPaperList")
 	public String testPaperList(Model model
-							, @RequestParam("testNo") int testNo) {
+							, @RequestParam("testNo") int testNo
+							, @RequestParam("questionNo") int questionNo) {
 		
 		List<Map<String, Object>> list = testService.getSelectTestPaperListList(testNo);
 		log.debug(list+" <- testPaperList");
@@ -35,7 +36,7 @@ public class TestController {
 	
 	
 	// student/test
-	@GetMapping("student/test/studentTestList")
+	@GetMapping("/student/test/studentTestList")
 	public String studentTestList(Model model 
 								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
 								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage) { 
