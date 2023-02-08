@@ -9,6 +9,10 @@ import goodee.gdj58.online.vo.Test;
 
 @Mapper
 public interface TestMapper {
+	
+	// testPaper
+	List<Map<String, Object>> selectTestPaperList(Map<String, Object> paramMap);
+	
 	// student/test
 	List<Test> selectStudentTestList(Map<String, Object> paramMap);
 	// teacher/test

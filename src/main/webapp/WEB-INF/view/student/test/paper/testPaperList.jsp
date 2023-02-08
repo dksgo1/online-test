@@ -7,18 +7,6 @@
 <title></title>
 </head>
 <body>
-	<h1>문제 리스트</h1>
-	<table>	
-		<c:forEach var="q" items="list">
-			<tr>
-				<th>번호</th>
-				<th>문제</th>
-			</tr>	
-			<tr>
-				<td></td>
-				<td></td>
-			</tr>
-		</c:forEach>
-	</table>
+	<h1>답안지</h1>
 </body>
 </html>

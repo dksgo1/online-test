@@ -16,13 +16,17 @@ import goodee.gdj58.online.vo.Question;
 public class QuestionService {
 	@Autowired
 	private QuestionMapper questionMapper;
-
-	public List<Map<String, Object>> getStudentQuestionList(int testNo, int currentPage, int rowPerPage){
-		int beginRow = (currentPage-1)*rowPerPage;
+	
+	public List<Map<String, Object>> getStudentExampleList(int testNo){
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("questionNo", testNo);
-		paramMap.put("beginRow", beginRow);
-		paramMap.put("rowPerPage", rowPerPage);
+		paramMap.put("testNo", testNo);
+
+		return questionMapper.selectStudentExampleList(paramMap);
+	}
+
+	public List<Question> getStudentQuestionList(int testNo) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("testNo", testNo);
 		
 		return questionMapper.selectStudentQuestionList(paramMap);
 	}

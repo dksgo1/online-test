@@ -23,7 +23,7 @@
 		<c:forEach var="t" items="${list}">
 			<tr>
 				<td>${t.testNo}</td>
-				<td><a href="${pageContext.request.contextPath}/teacher/test/question/teacherQuestionList?testNo=${t.testNo}">${t.testTitle}</a></td>
+				<td><a href="${pageContext.request.contextPath}/teacher/test/question/teacherQuestionList?testNo=${t.testNo}&testTitle=${t.testTitle}">${t.testTitle}</a></td>
 				<td>${t.testDate}</td>
 				<td><a href="${pageContext.request.contextPath}/teacher/test/modifyTest?testNo=${t.testNo}">수정</a></td>
 			</tr>

@@ -15,8 +15,14 @@ import goodee.gdj58.online.vo.Test;
 @Transactional
 public class TestService {
 	@Autowired
-	private TestMapper tsetMapper;
-	
+	private TestMapper testMapper;
+
+	public List<Map<String, Object>> getSelectTestPaperListList(int testNo){
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("testNo", testNo);
+		
+		return testMapper.selectTestPaperList(paramMap);
+	}	
 
 	
 	// student/test
@@ -25,16 +31,16 @@ public class TestService {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("beginRow", beginRow);
 		paramMap.put("rowPerPage", rowPerPage);
-		return tsetMapper.selectStudentTestList(paramMap);
+		return testMapper.selectStudentTestList(paramMap);
 	}
 	
 	// teacher/test
 	public int modifyTest(Test test) {
-		return tsetMapper.updateTest(test);
+		return testMapper.updateTest(test);
 	}
 
 	public int addTest(Test test) {
-		return tsetMapper.insertTest(test);
+		return testMapper.insertTest(test);
 	}	
 
 	public List<Test> getTestList(int currentPage, int rowPerPage) {
@@ -42,7 +48,7 @@ public class TestService {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("beginRow", beginRow);
 		paramMap.put("rowPerPage", rowPerPage);
-		return tsetMapper.selectTestList(paramMap);
+		return testMapper.selectTestList(paramMap);
 	}
 
 }

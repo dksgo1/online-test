@@ -1,6 +1,7 @@
 package goodee.gdj58.online.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,21 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class TestController {
 	@Autowired TestService testService;
+	
+	// testPaperList
+	@GetMapping("student/test/paper/testPaperList")
+	public String testPaperList(Model model
+							, @RequestParam("testNo") int testNo) {
+		
+		List<Map<String, Object>> list = testService.getSelectTestPaperListList(testNo);
+		log.debug(list+" <- testPaperList");
+		
+		model.addAttribute("list", list);
+		model.addAttribute("testNo", testNo);
+		
+		return "student/test/paper/testPaperList";
+	}
+	
 	
 	// student/test
 	@GetMapping("student/test/studentTestList")

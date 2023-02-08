@@ -18,25 +18,25 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class QuestionController {
 	@Autowired QuestionService questionService;	
+	
 	// studentQuestion
-	@GetMapping("/student/test/question/studentQuestionList")
-	public String studentQustionList(Model model 
+	@GetMapping("/student/test/question/studentExampleList")
+	public String studentExampleList(Model model 
 								, @RequestParam("testNo") int testNo
-								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
-								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage) { 
+								, @RequestParam("testTitle") String testTitle) { 
 			
-		// int currentPage = request.getParameter("currentPage");
-		log.debug(currentPage+" <-currentPage");
-		log.debug(rowPerPage+" <-rowPerPage");		
+		List<Question> list =questionService.getStudentQuestionList(testNo);
+		log.debug(list+" <- studentQuestionList");
 		
-		List<Map<String, Object>> list = questionService.getStudentQuestionList(testNo, currentPage, rowPerPage);
-		log.debug(list+" <- studentQustionList");
+		List<Map<String, Object>> list2 = questionService.getStudentExampleList(testNo);
+		log.debug(list2+" <- studentExampleList");
 		
 		model.addAttribute("list", list);
+		model.addAttribute("list2", list2);
 		model.addAttribute("testNo", testNo);
-		model.addAttribute("currentPage", currentPage);
-	
-		return "student/test/question/studentQuestionList";	
+		model.addAttribute("testTitle", testTitle);
+		
+		return "student/test/question/studentExampleList";	
 	}
 
 				
@@ -77,6 +77,7 @@ public class QuestionController {
 	@GetMapping("/teacher/test/question/teacherQuestionList")
 	public String testList(Model model 
 								, @RequestParam("testNo") int testNo
+								, @RequestParam("testTitle") String testTitle
 								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
 								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage) { 
 								// int currentPage = request.getParameter("currentPage");
@@ -85,9 +86,10 @@ public class QuestionController {
 		log.debug(rowPerPage+" <-rowPerPage");
 	
 		List<Question> list =questionService.getTeacherQuestionList(testNo, currentPage, rowPerPage);
-		log.debug(list+" <- teacherList");
+		log.debug(list+" <- teacherQuestionList");
 		// request.setAttribute("list", list);
 		model.addAttribute("testNo", testNo);
+		model.addAttribute("testTitle", testTitle);
 		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
 	

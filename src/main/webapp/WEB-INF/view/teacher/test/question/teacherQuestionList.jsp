@@ -11,7 +11,7 @@
 	<div>
 		<c:import url="/WEB-INF/view/teacher/inc/teacherMenu.jsp"></c:import>
 	</div>
-	<h1>문제 리스트</h1>
+	<h1>${testTitle}</h1>
 	<a href="${pageContext.request.contextPath}/teacher/test/question/addQuestion?testNo=${testNo}">문제 추가</a>
 	<table border="1">
 		<tr>
