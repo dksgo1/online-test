@@ -23,7 +23,8 @@ public class QuestionController {
 	@GetMapping("/student/test/question/studentExampleList")
 	public String studentExampleList(Model model 
 								, @RequestParam("testNo") int testNo
-								, @RequestParam("testTitle") String testTitle) { 
+								, @RequestParam("testTitle") String testTitle
+								, @RequestParam("studentNo") int studentNo) { 
 			
 		List<Question> list =questionService.getStudentQuestionList(testNo);
 		log.debug(list+" <- studentQuestionList");
@@ -34,6 +35,7 @@ public class QuestionController {
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
 		model.addAttribute("testNo", testNo);
+		model.addAttribute("studentNo", studentNo);
 		model.addAttribute("testTitle", testTitle);
 		
 		return "student/test/question/studentExampleList";	

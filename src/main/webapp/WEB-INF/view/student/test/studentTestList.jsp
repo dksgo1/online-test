@@ -21,7 +21,7 @@
 		<c:forEach var="s" items="${list}">
 			<tr>
 				<td>${s.testNo}</td>
-				<td><a href="${pageContext.request.contextPath}/student/test/question/studentExampleList?testNo=${s.testNo}&testTitle=${s.testTitle}">${s.testTitle}</a></td>
+				<td><a href="${pageContext.request.contextPath}/student/test/question/studentExampleList?testNo=${s.testNo}&testTitle=${s.testTitle}&studentNo=${loginStudent.studentNo}">${s.testTitle}</a></td>
 				<td>${s.testDate}</td>
 			</tr>
 		</c:forEach>

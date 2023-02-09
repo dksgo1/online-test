@@ -8,11 +8,11 @@
 </head>
 <body>
 	<h1>${testTitle}</h1>
-	<form action="${pageContext.request.contextPath}/student/test/paper/testPaperList" method="get">
+	<form action="${pageContext.request.contextPath}/student/test/paper/addPaper" method="post">
 		<table border="1">	
 			<c:forEach var="q" items="${list}">
+				<input type="hidden" name="studentNo" value="${studentNo}">
 				<input type="hidden" name="questionNo" value="${q.questionNo}">
-				<input type="hidden" name="testNo" value="${testNo}">
 				<tr>
 					<th>${q.questionIdx}번</th>
 					<th>${q.questionTitle}</th>
@@ -25,10 +25,10 @@
 				</c:forEach>
 				<tr>
 					<td colspan="2">
-						<input type="checkbox" name="exampleIdx" value="1">1
-						<input type="checkbox" name="exampleIdx" value="2">2
-						<input type="checkbox" name="exampleIdx" value="3">3
-						<input type="checkbox" name="exampleIdx" value="4">4
+						<input type="checkbox" name="answer" value="1">1
+						<input type="checkbox" name="answer" value="2">2
+						<input type="checkbox" name="answer" value="3">3
+						<input type="checkbox" name="answer" value="4">4
 					</td>
 				</tr>
 			</c:forEach>		

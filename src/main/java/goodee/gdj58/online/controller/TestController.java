@@ -3,6 +3,8 @@ package goodee.gdj58.online.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import goodee.gdj58.online.service.TestService;
+import goodee.gdj58.online.vo.Student;
 import goodee.gdj58.online.vo.Test;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,9 +42,13 @@ public class TestController {
 	@GetMapping("/student/test/studentTestList")
 	public String studentTestList(Model model 
 								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
-								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage) { 
-								// int currentPage = request.getParameter("currentPage");
-	
+								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage
+								, HttpSession session) { 
+							
+		
+		Student loginStudent = (Student)session.getAttribute("loginStudent");
+		
+		// int currentPage = request.getParameter("currentPage");
 		log.debug(currentPage+" <-currentPage");
 		log.debug(rowPerPage+" <-rowPerPage");
 	
@@ -51,6 +58,7 @@ public class TestController {
 		// request.setAttribute("list", list);
 		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("loginStudent", loginStudent);
 		return "student/test/studentTestList";	
 	}
 	// teacher/test

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goodee.gdj58.online.mapper.PaperMapper">
+	
+	<insert id="insertPaper" parameterType="java.util.Map">
+		INSERT INTO paper (
+			student_no
+			, question_no
+			, answer
+		) VALUES 
+			<foreach collection="list" item="i" separator=",">
+				(#{i.studentNo}, #{i.questionNo}, #{i.answer})
+			</foreach>
+	</insert>
+
+</mapper>
