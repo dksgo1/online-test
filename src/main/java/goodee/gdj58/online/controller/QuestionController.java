@@ -41,8 +41,17 @@ public class QuestionController {
 		return "student/test/question/studentExampleList";	
 	}
 
-				
 	// teacherQuestion
+	// 삭제
+	@GetMapping("/teacher/test/Question/deleteQuestion")
+	public String deleteQuestion(@RequestParam("questionNo") int questionNo
+								, @RequestParam("testNo") int testNo) {
+		questionService.deleteQuestion(questionNo);
+		log.debug("\u001B[31m"+questionNo+" <- deleteQuestionNo");
+		
+		return "redirect:/teacher/test/question/teacherQuestionList?testNo="+testNo;
+	}
+	
 	// 수정
 	@GetMapping("/teacher/test/question/modifyQuestion")
 	public String modifyQuestion(Model model

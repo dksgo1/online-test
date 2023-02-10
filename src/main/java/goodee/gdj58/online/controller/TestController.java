@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import goodee.gdj58.online.service.TestService;
+import goodee.gdj58.online.vo.Question;
 import goodee.gdj58.online.vo.Student;
 import goodee.gdj58.online.vo.Test;
 import lombok.extern.slf4j.Slf4j;
@@ -25,13 +26,15 @@ public class TestController {
 	// testPaperList
 	@GetMapping("/student/test/paper/testPaperList")
 	public String testPaperList(Model model
-							, @RequestParam("testNo") int testNo
-							, @RequestParam("questionNo") int questionNo) {
+							, @RequestParam("testNo") int testNo) {
 		
-		List<Map<String, Object>> list = testService.getSelectTestPaperListList(testNo);
-		log.debug(list+" <- testPaperList");
+		List<Question> list = testService.getQuestionList(testNo);
+		
+		List<Map<String, Object>> list2 = testService.getSelectTestPaperListList(testNo);
+		log.debug(list2+" <- testPaperList");
 		
 		model.addAttribute("list", list);
+		model.addAttribute("list2", list2);
 		model.addAttribute("testNo", testNo);
 		
 		return "student/test/paper/testPaperList";
@@ -62,6 +65,12 @@ public class TestController {
 		return "student/test/studentTestList";	
 	}
 	// teacher/test
+	@GetMapping("/teacher/test/deleteTest")
+	public String deleteTest(@RequestParam("testNo") int testNo) {
+		testService.deleteTest(testNo);
+		return "redirect:/teacher/test/teacherTestList";
+	}
+	
 	@GetMapping("/teacher/test/modifyTest")
 	public String modifyTest(Model model, @RequestParam(value="testNo") int testNo) {
 		model.addAttribute("testNo", testNo);

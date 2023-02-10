@@ -17,6 +17,7 @@ public class QuestionService {
 	@Autowired
 	private QuestionMapper questionMapper;
 	
+	// studentQuestion
 	public List<Map<String, Object>> getStudentExampleList(int testNo){
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("testNo", testNo);
@@ -29,6 +30,10 @@ public class QuestionService {
 		paramMap.put("testNo", testNo);
 		
 		return questionMapper.selectStudentQuestionList(paramMap);
+	}
+	// teacherQuestion
+	public int deleteQuestion(int questionNo) {
+		return questionMapper.deleteQuestion(questionNo);
 	}
 	
 	public int modifyQuestion(Question question) {

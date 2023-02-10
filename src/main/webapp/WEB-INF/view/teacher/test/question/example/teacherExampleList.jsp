@@ -20,6 +20,7 @@
 				<td>${e.exampleTitle}</td>
 				<td>${e.exampleOx}</td>
 				<td><a href="${pageContext.request.contextPath}/teacher/test/question/example/modifyExample?questionNo=${questionNo}&exampleNo=${e.exampleNo}">수정</a></td>
+				<td><a href="${pageContext.request.contextPath}/teacher/test/question/example/deleteExample?questionNo=${questionNo}&exampleNo=${e.exampleNo}">삭제</a></td>
 			</tr>
 		</table>
 	</c:forEach>

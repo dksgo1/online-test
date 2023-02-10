@@ -8,5 +8,22 @@
 </head>
 <body>
 	<h1>답안지</h1>
+	<table border="1">
+		<c:forEach var="q" items="${list}">
+			<tr>
+				<th>${q.questionIdx}</th>
+				<th>${q.questionTitle}</th>	
+				<th>정답여부</th>
+			</tr>
+			<c:forEach var="p" items="${list2}" begin="${(q.questionIdx-1)*4}" end="${(q.questionIdx-1)*4+3}">
+				<tr>
+					<td>${p.exampleIdx}</td>
+					<td>${p.exampleTitle}</td>
+					<td>${p.exampleOx}</td>
+				</tr>	
+			</c:forEach>
+		</c:forEach>
+	</table>
+	<h2>내점수 :</h2>
 </body>
 </html>

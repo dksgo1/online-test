@@ -10,6 +10,7 @@ import goodee.gdj58.online.vo.Example;
 @Mapper
 public interface ExampleMapper {
 	// teacherExample
+	int deleteExample(int exampleNo);
 	int updateExample(Example example);
 	int insertExample(Example example);
 	List<Example> selectTeacherExampleList(Map<String, Object> paramMap);

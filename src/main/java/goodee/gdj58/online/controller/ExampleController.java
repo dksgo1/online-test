@@ -17,6 +17,15 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class ExampleController {
 	@Autowired ExampleService exampleService;
+
+	// 삭제
+	@GetMapping("/teacher/test/question/example/deleteExample")
+	public String deleteExample(@RequestParam("exampleNo") int exampleNo
+								, @RequestParam("questionNo") int questionNo) {
+		exampleService.deleteExample(exampleNo);
+		
+		return "redirect:/teacher/test/question/example/teacherExampleList?questionNo="+questionNo;
+	}
 	
 	// 수정
 	@GetMapping("/teacher/test/question/example/modifyExample")

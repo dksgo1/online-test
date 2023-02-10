@@ -14,6 +14,7 @@ public interface QuestionMapper {
 	List<Map<String, Object>> selectStudentExampleList(Map<String, Object> paramMap);
 	List<Question> selectStudentQuestionList(Map<String, Object> paramMap);
 	// teacherQuestion
+	int deleteQuestion(int questionNo);
 	int updateQuestion(Question question);
 	int insertQuestion(Question question);
 	List<Question> selectTeacherQuestionList(Map<String, Object> paramMap);

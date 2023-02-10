@@ -17,6 +17,10 @@ public class ExampleService {
 	@Autowired
 	private ExampleMapper exampleMapper;
 
+	public int deleteExample(int exampleNo) {
+		return exampleMapper.deleteExample(exampleNo);
+	}
+	
 	public int modifyExample(Example example) {
 		return exampleMapper.updateExample(example);
 	}

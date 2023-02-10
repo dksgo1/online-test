@@ -3,16 +3,36 @@
 <mapper namespace="goodee.gdj58.online.mapper.TestMapper">
 
 	<!-- testPaper -->
+	<select id="selectQuestionList" resultType="goodee.gdj58.online.vo.Question" parameterType="java.util.Map">
+		SELECT
+			question_no questionNo 
+			, test_no testNo
+			, question_idx questionIdx
+			, question_title questionTitle
+		FROM question 
+		WHERE test_no = #{testNo}
+		ORDER BY question_no ASC
+	</select>
+
 	<select id="selectTestPaperList" resultType="java.util.Map" parameterType="java.util.Map">
-		SELECT *
-		FROM test t INNER JOIN question q 
-		ON t.test_no = q.question_no
-		INNER JOIN example e 
-		ON e.question_no = q.question_no
-		INNER JOIN paper p
-		ON p.question_no = e.question_no
-		WHERE t.test_no = #{testNo}
-		ORDER BY q.question_no ASC
+		SELECT 	
+			 q.question_no questionNo
+			, q.test_no testNo
+			, q.question_idx questionIdx
+			, q.question_title questionTitle
+			, e.example_no exampleNo
+			, e.example_idx exampleIdx
+			, e.example_title exampleTitle
+			, e.example_ox exampleOx
+			, p.paper_no paperNo
+			, p.student_no studentNo
+			, p.answer answer
+		FROM question q LEFT JOIN example e
+		ON q.question_no = e.question_no
+		LEFT JOIN paper p
+		ON p.question_no = e.question_no 
+		WHERE q.test_no = #{testNo}
+		ORDER BY e.example_no ASC
 	</select>
 
 	<!-- student/test -->
@@ -27,6 +47,11 @@
 	</select>
 
 	<!-- teacher/test -->
+	<delete id="deleteTest">
+		DELETE FROM test
+		WHERE test_no = #{testNo}
+	</delete>
+
 	<update id="updateTest" parameterType="goodee.gdj58.online.vo.Test">
 		UPDATE test
 		SET test_title = #{testTitle}

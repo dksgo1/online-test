@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import goodee.gdj58.online.mapper.TestMapper;
+import goodee.gdj58.online.vo.Question;
 import goodee.gdj58.online.vo.Test;
 
 @Service
@@ -17,6 +18,13 @@ public class TestService {
 	@Autowired
 	private TestMapper testMapper;
 
+	public List<Question> getQuestionList(int testNo) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("testNo", testNo);
+		
+		return testMapper.selectQuestionList(paramMap);
+	}
+	
 	public List<Map<String, Object>> getSelectTestPaperListList(int testNo){
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("testNo", testNo);
@@ -35,6 +43,10 @@ public class TestService {
 	}
 	
 	// teacher/test
+	public int deleteTest(int testNo) {
+		return testMapper.deleteTest(testNo);
+	}
+	
 	public int modifyTest(Test test) {
 		return testMapper.updateTest(test);
 	}

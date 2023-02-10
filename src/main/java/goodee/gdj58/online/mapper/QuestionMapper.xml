@@ -28,6 +28,11 @@
 		ORDER BY question_no ASC
 	</select>
 	<!-- teacherQuestion -->
+	<delete id="deleteQuestion">
+		DELETE FROM question
+		WHERE question_no = #{questionNo}
+	</delete>
+	
 	<update id="updateQuestion" parameterType="goodee.gdj58.online.vo.Question">
 		UPDATE question
 		SET question_idx = #{questionIdx}
