@@ -19,6 +19,12 @@
 	</select>
 	
 	<!-- employee/teacher -->
+	<select id="selectTeacherId" parameterType="string" resultType="string">
+		SELECT teacher_id teacherId
+		FROM teacher
+		WHERE teacher_id =#{teacherId}
+	</select>
+
 	<select id="teacherCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM teacher	
 		<where>	

@@ -31,6 +31,16 @@ public class TeacherService {
 	}
 		
 	// employee/teacher
+	public String getTeacherId(String teacherId) {
+		// 사용가능한 ID면 "YES" 아니면 "NO"반환
+		String resultStr = "NO";
+		if(teacherMapper.selectTeacherId(teacherId) == null) {
+			resultStr = "YES";
+		}
+		return resultStr;
+	}
+	
+	
 	public int teacherCount(String searchWord, int currentPage, int rowPerPage) {
 		int count = teacherMapper.teacherCount(searchWord);
 		int lastPage = (int)Math.ceil((double)count / (double)rowPerPage);

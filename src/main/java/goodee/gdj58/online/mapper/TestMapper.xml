@@ -21,10 +21,12 @@
 			, q.question_idx questionIdx
 			, q.question_title questionTitle
 			, e.example_no exampleNo
+			, e.question_no questionNo2
 			, e.example_idx exampleIdx
 			, e.example_title exampleTitle
 			, e.example_ox exampleOx
 			, p.paper_no paperNo
+			, p.question_no questionNo3
 			, p.student_no studentNo
 			, p.answer answer
 		FROM question q LEFT JOIN example e

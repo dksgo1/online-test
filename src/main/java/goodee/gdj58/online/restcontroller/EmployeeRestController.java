@@ -11,7 +11,7 @@ import goodee.gdj58.online.service.EmployeeService;
 public class EmployeeRestController {
 	@Autowired EmployeeService employeeService;
 	
-	@GetMapping("/empIdck")
+	@GetMapping("/employee/empIdck")
 	public String empIdck(@RequestParam(value = "empId") String empId) {
 		return employeeService.getEmpId(empId);
 	}

@@ -13,6 +13,7 @@ public interface TeacherMapper {
 	int updateTeacherPw(Map<String, Object> paramMap);
 	Teacher login(Teacher teacher);
 	// employee/teacher
+	public String selectTeacherId(String teacherId);
 	int teacherCount(String searchWord);
 	int deleteTeacher(int teacherNo);
 	int insertTeacher(Teacher teacher);
