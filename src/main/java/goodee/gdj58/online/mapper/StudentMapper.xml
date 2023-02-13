@@ -18,6 +18,14 @@
 	WHERE student_id = #{studentId} AND student_pw = PASSWORD(#{studentPw})	
 	</select>
 	<!-- employee/student -->
+	<select id="selectStudentId" parameterType="string" resultType="string">
+	
+		SELECT student_id studentId
+		FROM student
+		WHERE student_id =#{studentId}
+	
+	</select>
+	
 	<select id="studentCount" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM student	
 		<where>	

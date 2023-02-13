@@ -62,6 +62,7 @@ public class StudentController {
 	}
 	
 	// employee/student
+	
 	// 삭제 
 	@GetMapping("/employee/student/deleteStudent")
 	public String deleteStudent(@RequestParam("studentNo") int studentNo) {

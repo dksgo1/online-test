@@ -19,6 +19,16 @@ public class EmployeeService {
 	private EmployeeMapper employeeMapper;
 
 	// emp
+	public String getEmpId(String empId) {
+		// 사용가능한 ID면 "YES" 아니면 "NO"반환
+		String resultStr = "NO";
+		if(employeeMapper.selectEmpId(empId) == null) {
+			resultStr = "YES";
+		}
+		return resultStr;
+	}
+	
+	
 	public int empCount(String searchWord, int currentPage, int rowPerPage) {
 		int count = employeeMapper.empCount(searchWord);
 		int lastPage = (int)Math.ceil((double)count / (double)rowPerPage);

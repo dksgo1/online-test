@@ -7,6 +7,8 @@
 		SELECT 
 			q.question_no questionNo
 			, q.test_no testNo
+			, q.question_idx questionIdx
+			, q.question_title questionTitle
 			, e.example_no exampleNo
 			, e.example_idx exampleIdx
 			, e.example_title exampleTitle

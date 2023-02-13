@@ -7,10 +7,11 @@
 			student_no
 			, question_no
 			, answer
-		) VALUES 
-			<foreach collection="list" item="i" separator=",">
-				(#{i.studentNo}, #{i.questionNo}, #{i.answer})
-			</foreach>
+		) VALUES (
+			#{studentNo}
+			, #{questionNo}
+			, #{answer}
+		)
 	</insert>
 
 </mapper>

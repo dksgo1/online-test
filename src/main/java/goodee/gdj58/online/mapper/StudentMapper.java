@@ -13,6 +13,7 @@ public interface StudentMapper {
 	int updateStudentPw(Map<String, Object> paramMap);
 	Student login(Student student);
 	// employee/student
+	public String selectStudentId(String studentId);
 	int studentCount(String searchWord);
 	int deleteStudent(int studentNo);
 	int insertStudent(Student student);

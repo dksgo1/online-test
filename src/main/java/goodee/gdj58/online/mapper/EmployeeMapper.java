@@ -12,6 +12,7 @@ import goodee.gdj58.online.vo.Employee;
 @Mapper
 public interface EmployeeMapper {
 	// emp
+	public String selectEmpId(String empId);
 	int empCount(String searchWord);
 	int updateEmployeePw(Map<String, Object> paramMap);
 	Employee login(Employee employee);
