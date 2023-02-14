@@ -33,9 +33,11 @@ public class TestController {
 		List<Map<String, Object>> list2 = testService.getSelectTestPaperListList(testNo);
 		log.debug(list2+" <- testPaperList");
 		
+		
 		model.addAttribute("list", list);
 		model.addAttribute("list2", list2);
 		model.addAttribute("testNo", testNo);
+		
 		
 		return "student/test/paper/testPaperList";
 	}

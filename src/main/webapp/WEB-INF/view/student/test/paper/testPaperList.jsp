@@ -26,6 +26,6 @@
 			</c:forEach>
 		</c:forEach>
 	</table>
-	<h2>내점수 :</h2>
+	<h2>내점수 : 점</h2>
 </body>
 </html>
