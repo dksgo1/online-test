@@ -43,7 +43,7 @@ public class TeacherController {
 	@GetMapping("/teacher/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/loginTeacher";
+		return "redirect:/login.jsp";
 	}
 	
 	// 로그인

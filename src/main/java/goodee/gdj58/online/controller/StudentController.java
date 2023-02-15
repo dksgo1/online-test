@@ -58,7 +58,7 @@ public class StudentController {
 	@GetMapping("/student/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/loginStudent";
+		return "redirect:/login.jsp";
 	}
 	
 	// employee/student

@@ -18,6 +18,18 @@ public class TestService {
 	@Autowired
 	private TestMapper testMapper;
 
+	// 학생 점수 구하기
+	public int totalScore(List<Map<String, Object>> resultList) {
+	    int score = 0;
+	    for (Map<String, Object> result : resultList) {
+	        // exampleOx 값이 "정답"이고, exampleIdx 값과 answer 값이 같으면 20점 추가
+	        if (result.get("exampleOx").equals("정답") && result.get("exampleIdx").equals(result.get("answer"))) {
+	            score += 20;
+	        }
+	    }
+	    return score;
+	}
+	
 	public List<Question> getQuestionList(int testNo) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("testNo", testNo);

@@ -38,8 +38,7 @@ public class EmployeeController {
 		employeeService.updateEmployeePw(loginEmp.getEmpNo(), oldPw, newPw);
 		
 		return "redirect:/employee/empList";
-	}
-	
+	}	
 	
 	// 로그인
 	@GetMapping("/loginEmp")
@@ -58,7 +57,7 @@ public class EmployeeController {
 	@GetMapping("/employee/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/employee/loginEmp";
+		return "redirect:/login.jsp";
 	}
 	
 	// 삭제 

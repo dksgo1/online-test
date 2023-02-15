@@ -13,7 +13,6 @@ import goodee.gdj58.online.vo.Test;
 public interface TestMapper {
 	
 	// testPaper
-	
 	List<Question> selectQuestionList(Map<String, Object> paramMap);
 	List<Map<String, Object>> selectTestPaperList(Map<String, Object> paramMap);
 	
