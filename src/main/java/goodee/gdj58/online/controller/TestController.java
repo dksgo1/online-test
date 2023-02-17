@@ -1,6 +1,6 @@
 package goodee.gdj58.online.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +34,8 @@ public class TestController {
 		List<Map<String, Object>> list2 = testService.getSelectTestPaperListList(testNo);
 		log.debug(list2+" <- testPaperList");
 		
+		List<Map<String, Object>> list3 = testService.getSelectAnswerList(testNo);
+		
 	    int score = testService.totalScore(list2);
 	    log.debug(score+ " <-score");
 	    
@@ -41,6 +43,7 @@ public class TestController {
 		model.addAttribute("list2", list2);
 		model.addAttribute("testNo", testNo);
 		model.addAttribute("score", score);
+		model.addAttribute("list3", list3);
 		
 		return "student/test/paper/testPaperList";
 	}

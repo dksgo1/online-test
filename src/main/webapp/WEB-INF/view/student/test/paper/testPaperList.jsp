@@ -5,6 +5,38 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<style>
+	table {
+  		margin: 50px auto;
+ 		border-collapse: collapse;
+ 		border: 1px solid black;
+	}
+	
+	th, td {
+ 		padding: 10px;
+ 		text-align: center;
+ 		border: 1px solid black;
+	}
+	
+	th {
+		background-color: #eee;
+	}
+	
+	tr:nth-child(even) {
+  		background-color: #f2f2f2;
+	}
+	
+	span {
+  		margin-top: 50px;
+  		font-size: 20px;
+  		font-weight: bold;
+	}
+	
+	div {
+ 		margin-top: 10px;
+ 		font-size: 16px;
+	}
+</style>
 </head>
 <body>
 	<h1>답안지</h1>
@@ -26,6 +58,14 @@
 			</c:forEach>
 		</c:forEach>
 	</table>
-	<h2>내점수 :${score} 점</h2>
+	<span>내가 선택한 답</span>
+	<c:forEach var="a" items="${list3}">
+		<div>
+			${a.questionIdx}번문제 ${a.answer} 
+		</div>
+	</c:forEach>
+	<div>
+		<h2>내점수 :${score} 점</h2>
+	</div>
 </body>
 </html>

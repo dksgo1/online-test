@@ -18,6 +18,14 @@ public class TestService {
 	@Autowired
 	private TestMapper testMapper;
 
+	// 학생이 선택한 답만 출력
+	public List<Map<String, Object>> getSelectAnswerList(int testNo){
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("testNo", testNo);
+		
+		return testMapper.selectAnswerList(paramMap);
+	}	
+	
 	// 학생 점수 구하기
 	public int totalScore(List<Map<String, Object>> resultList) {
 	    int score = 0;

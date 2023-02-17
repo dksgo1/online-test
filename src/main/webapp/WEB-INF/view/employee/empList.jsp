@@ -6,6 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+   body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+   }
+   header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+   }
+   h1 {
+      margin-top: 40px;
+      text-align: center;
+      color: #333;
+   }
+   table {
+      width: 80%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+   }
+   th,
+   td {
+      padding: 15px;
+      text-align: center;
+   }
+   th {
+      background-color: #333;
+      color: #fff;
+   }
+   tr:nth-child(even) {
+      background-color: #f2f2f2;
+   }
+   a {
+      color: #333;
+      text-decoration: none;
+   }
+   a:hover
+</style>
 </head>
 <body>
 	<!-- empMenu include -->

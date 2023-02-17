@@ -13,6 +13,8 @@ import goodee.gdj58.online.vo.Test;
 public interface TestMapper {
 	
 	// testPaper
+	// 내가 선택한 답 출력
+	List<Map<String, Object>> selectAnswerList(Map<String, Object> paramMap);
 	List<Question> selectQuestionList(Map<String, Object> paramMap);
 	List<Map<String, Object>> selectTestPaperList(Map<String, Object> paramMap);
 	

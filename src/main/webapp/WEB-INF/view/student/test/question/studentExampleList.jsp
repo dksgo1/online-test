@@ -5,6 +5,52 @@
 <head>
 <meta charset="UTF-8">
 	<title></title>
+ 	<style>
+   		body {
+     		font-family: Arial, sans-serif;
+     		font-size: 14px;
+     		color: #333;
+     		background-color: #f2f2f2;
+     		padding: 20px;
+   		}
+
+   		h1 {
+    		text-align: center;
+    		margin-bottom: 20px;
+   		}
+
+   		table {
+     		border-collapse: collapse;
+     		margin: 0 auto;
+     		width: 100%;
+     		max-width: 800px;
+     		background-color: #fff;
+     		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+   		}
+
+   		th,
+   		td {
+   			padding: 10px;
+     		text-align: left;
+   		}
+
+   		th {
+     		background-color: #f2f2f2;
+   		}
+
+   		tr:nth-child(even) {
+     		background-color: #f2f2f2;
+   		}
+
+   		tr:hover {
+     		background-color: #ddd;
+   		}
+
+   		td input[type="radio"] {
+     		margin-right: 10px;
+   		}
+ 	</style>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script>
 	$(document).ready(function() {
@@ -41,8 +87,7 @@
 						<tr>
 							<td>${e.exampleIdx}</td>
 							<td>
-								<input type="radio" id="answer${a.count}" name="answer${a.count}" value="${e.exampleIdx}">${e.exampleTitle}
-												
+								<input type="radio" id="answer${a.count}" name="answer${a.count}" value="${e.exampleIdx}">${e.exampleTitle}		
 							</td>	
 						</tr>	
 					</c:if>	
