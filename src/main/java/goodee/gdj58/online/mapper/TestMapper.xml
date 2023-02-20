@@ -9,8 +9,8 @@
 		   , p.answer answer
 		FROM question q LEFT JOIN paper p
 		ON p.question_no = q.question_no
-		WHERE q.test_no = #{testNo}
-		ORDER BY q.question_no, p.student_no ASC
+		WHERE q.test_no = #{testNo} AND p.student_no = #{studentNo}
+		ORDER BY q.question_no ASC
 	</select>
 
 
@@ -42,8 +42,8 @@
 			, p.answer answer
 		FROM question q LEFT JOIN example e
 		ON q.question_no = e.question_no
-		LEFT JOIN paper p
-		ON p.question_no = e.question_no 
+		INNER JOIN paper p
+		ON p.question_no = e.question_no AND p.student_no = #{studentNo}
 		WHERE q.test_no = #{testNo}
 		ORDER BY e.example_no ASC
 	</select>

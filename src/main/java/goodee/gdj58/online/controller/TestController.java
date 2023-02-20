@@ -27,14 +27,15 @@ public class TestController {
 	// testPaperList
 	@GetMapping("/student/test/paper/testPaperList")
 	public String testPaperList(Model model
-							, @RequestParam("testNo") int testNo) {
+							, @RequestParam("testNo") int testNo
+							, @RequestParam("studentNo") int studentNo) {
 		
 		List<Question> list = testService.getQuestionList(testNo);
 		
-		List<Map<String, Object>> list2 = testService.getSelectTestPaperListList(testNo);
+		List<Map<String, Object>> list2 = testService.getSelectTestPaperListList(studentNo, testNo);
 		log.debug(list2+" <- testPaperList");
 		
-		List<Map<String, Object>> list3 = testService.getSelectAnswerList(testNo);
+		List<Map<String, Object>> list3 = testService.getSelectAnswerList(testNo, studentNo);
 		
 	    int score = testService.totalScore(list2);
 	    log.debug(score+ " <-score");
@@ -44,6 +45,7 @@ public class TestController {
 		model.addAttribute("testNo", testNo);
 		model.addAttribute("score", score);
 		model.addAttribute("list3", list3);
+		
 		
 		return "student/test/paper/testPaperList";
 	}

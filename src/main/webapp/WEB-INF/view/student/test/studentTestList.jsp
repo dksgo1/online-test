@@ -34,17 +34,19 @@
 				<th>시험회차</th>
 				<th>시험이름</th>
 				<th>응시날짜</th>
+				<th>시험응시</th>
 				<th>답안지</th>
 			</tr>
 			<c:forEach var="s" items="${list}">
 				<tr>
 					<td>${s.testNo}</td>
-					<td>
-						<a href="${pageContext.request.contextPath}/student/test/question/studentExampleList?testNo=${s.testNo}&testTitle=${s.testTitle}&studentNo=${loginStudent.studentNo}">${s.testTitle}</a>
-					</td>
+					<td>${s.testTitle}</td>
 					<td>${s.testDate}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/student/test/question/studentExampleList?testNo=${s.testNo}&testTitle=${s.testTitle}&studentNo=${loginStudent.studentNo}">응시하기</a>
+					</td>
 					<!-- 시험을 풀었을때만 보이게 해야됨 -->
-					<td><a href="${pageContext.request.contextPath}/student/test/paper/testPaperList?testNo=${s.testNo}">답안지</a></td>
+					<td><a href="${pageContext.request.contextPath}/student/test/paper/testPaperList?testNo=${s.testNo}&studentNo=${loginStudent.studentNo}">답안지</a></td>
 				</tr>
 			</c:forEach>
 		</table>

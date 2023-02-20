@@ -19,9 +19,10 @@ public class TestService {
 	private TestMapper testMapper;
 
 	// 학생이 선택한 답만 출력
-	public List<Map<String, Object>> getSelectAnswerList(int testNo){
+	public List<Map<String, Object>> getSelectAnswerList(int testNo, int studentNo){
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("testNo", testNo);
+		paramMap.put("studentNo", studentNo);
 		
 		return testMapper.selectAnswerList(paramMap);
 	}	
@@ -45,8 +46,9 @@ public class TestService {
 		return testMapper.selectQuestionList(paramMap);
 	}
 	
-	public List<Map<String, Object>> getSelectTestPaperListList(int testNo){
+	public List<Map<String, Object>> getSelectTestPaperListList(int studentNo, int testNo){
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("studentNo", studentNo);
 		paramMap.put("testNo", testNo);
 		
 		return testMapper.selectTestPaperList(paramMap);
