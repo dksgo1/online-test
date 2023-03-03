@@ -3,6 +3,8 @@
 <mapper namespace="goodee.gdj58.online.mapper.TestMapper">
 
 	<!-- testPaper -->
+	
+	
 	<select id="selectAnswerList" resultType="java.util.Map" parameterType="java.util.Map">
 		SELECT    
 		    q.question_idx questionIdx

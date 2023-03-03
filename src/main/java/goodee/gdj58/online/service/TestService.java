@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import goodee.gdj58.online.mapper.PaperMapper;
 import goodee.gdj58.online.mapper.TestMapper;
 import goodee.gdj58.online.vo.Question;
 import goodee.gdj58.online.vo.Test;
@@ -17,7 +18,16 @@ import goodee.gdj58.online.vo.Test;
 public class TestService {
 	@Autowired
 	private TestMapper testMapper;
-
+	@Autowired
+	private PaperMapper paperMapper;
+	
+	public List<Map<String, Object>> getPaperList(int studentNo){
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("studentNo", studentNo);
+		
+		return paperMapper.selectPaperList(paramMap);
+	}
+	
 	// 학생이 선택한 답만 출력
 	public List<Map<String, Object>> getSelectAnswerList(int testNo, int studentNo){
 		Map<String, Object> paramMap = new HashMap<String, Object>();

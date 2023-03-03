@@ -25,16 +25,19 @@
 	tr:nth-child(even) {
   		background-color: #f2f2f2;
 	}
-	
+
 	span {
-  		margin-top: 50px;
-  		font-size: 20px;
-  		font-weight: bold;
+		display: block;
+		text-align: center;
+		font-size: 24px;
+		font-weight: bold;
+		margin-top: 50px;
 	}
-	
+
 	div {
- 		margin-top: 10px;
- 		font-size: 16px;
+		text-align: center;
+		font-size: 20px;
+		margin-top: 20px;
 	}
 </style>
 </head>

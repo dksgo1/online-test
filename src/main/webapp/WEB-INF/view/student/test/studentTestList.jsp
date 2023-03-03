@@ -31,7 +31,7 @@
 			background-color: #f5f5f5;
 		}
 		th {
-			background-color: #007bff;
+			background-color: #add8e6;
 			color: white;
 			border-bottom: none;
 		}
@@ -44,6 +44,30 @@
 			color: #0056b3;
 		}
 	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			let testBtn = document.querySelectorAll('.testBtn');
+			let testDate = document.querySelectorAll('.testDate');
+			let testNo = document.querySelectorAll('.testNo');
+			let today = new Date();
+			// console.log(today);
+			console.log(testDate);
+			let year = today.getFullYear();
+			let month = ('0' + (today.getMonth() + 1)).slice(-2);
+			let day = ('0' + today.getDate()).slice(-2);
+			let date = year + '-' + month  + '-' + day;
+			// console.log(dateString);
+			for(let i = 0; testNo.length; i++) {
+				testBtn[i].addEventListener('click',function(){
+					if (testDate[i].innerHTML != date) {
+						alert('지금은 시험응시 가능기간이 아닙니다.');
+						event.preventDefault();
+					}
+				});
+			}
+		});
+	</script>
 </head>
 <body>
 	<!-- studentMenu include -->
@@ -58,22 +82,29 @@
 					<th>시험회차</th>
 					<th>시험이름</th>
 					<th>응시날짜</th>
-					<th>시험응시</th>
-					<th>답안지</th>
+					<th>시험응시/답안지</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="s" items="${list}">
+				    <c:set var="answered" value="false"></c:set>
+				    <c:forEach var="p" items="${paperList}">
+				        <c:if test="${p.testNo == s.testNo}">
+				            <c:set var="answered" value="true"></c:set>
+				        </c:if>
+				    </c:forEach>
 					<tr>
-						<td>${s.testNo}</td>
+						<td><span class="testNo">${s.testNo}</span></td>
 						<td>${s.testTitle}</td>
-						<td>${s.testDate}</td>
-						<td>
-							<a href="${pageContext.request.contextPath}/student/test/question/studentExampleList?testNo=${s.testNo}&testTitle=${s.testTitle}&studentNo=${loginStudent.studentNo}">응시하기</a>
-						</td>
-						<c:set var="testPaperList" value="${testPaperService.getPaperList(loginStudent.studentNo, s.testNo)}"/>
-						<!-- 시험을 풀었을때만 보이게 해야됨 -->
-						<td><a href="${pageContext.request.contextPath}/student/test/paper/testPaperList?testNo=${s.testNo}&studentNo=${loginStudent.studentNo}">답안지</a></td>
+						<td><span class="testDate">${s.testDate}</span></td>
+						<c:choose>		
+							<c:when test="${answered}">
+								<td><a href="${pageContext.request.contextPath}/student/test/paper/testPaperList?testNo=${s.testNo}&studentNo=${loginStudent.studentNo}">답안지</a></td>
+							</c:when>
+							<c:otherwise>
+								<td><a href="${pageContext.request.contextPath}/student/test/question/studentExampleList?testNo=${s.testNo}&testTitle=${s.testTitle}&studentNo=${loginStudent.studentNo}" class="testBtn">응시하기</a></td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -1,6 +1,5 @@
 package goodee.gdj58.online.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class TestController {
-	@Autowired TestService testService;
+	@Autowired 
+	TestService testService;
 	
 	// testPaperList
 	@GetMapping("/student/test/paper/testPaperList")
@@ -60,6 +60,8 @@ public class TestController {
 							
 		
 		Student loginStudent = (Student)session.getAttribute("loginStudent");
+		int studentNo = loginStudent.getStudentNo();
+		log.debug(studentNo+" <-studentNo");
 		
 		// int currentPage = request.getParameter("currentPage");
 		log.debug(currentPage+" <-currentPage");
@@ -68,10 +70,15 @@ public class TestController {
 		List<Test> list =testService.getStudentTestList(currentPage, rowPerPage);
 		log.debug(list+" <-list");
 		
+		// 시험을 제출했을 경우에만 답안지 버튼 나오게
+		List<Map<String, Object>> paperList = testService.getPaperList(studentNo);
+		log.debug(paperList+" <-paperList");
+		
 		// request.setAttribute("list", list);
 		model.addAttribute("list", list);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("loginStudent", loginStudent);
+		model.addAttribute("paperList", paperList);
 		return "student/test/studentTestList";	
 	}
 	// teacher/test

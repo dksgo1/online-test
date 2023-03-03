@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="goodee.gdj58.online.mapper.PaperMapper">
 	
+	<select id="selectPaperList" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT 
+			t.test_no testNo
+		FROM paper p INNER JOIN question q
+		ON p.question_no = q.question_no
+		INNER JOIN test t
+		ON t.test_no = q.test_no
+		WHERE p.student_no = #{studentNo}
+		GROUP BY testNo
+	</select>	
 	<insert id="insertPaper" parameterType="java.util.Map">
 		INSERT INTO paper (
 			student_no

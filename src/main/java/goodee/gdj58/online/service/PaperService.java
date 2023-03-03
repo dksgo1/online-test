@@ -15,8 +15,7 @@ public class PaperService {
 	@Autowired
 	private PaperMapper paperMapper;
 	
-	public void addPaper(int studentNo, int[] questionNo, int[] answer) {
-		
+	public void addPaper(int studentNo, int[] questionNo, int[] answer) {		
 		for(int i=0; i<questionNo.length; i++) {
 			Map<String,Object> paper = new HashMap<String,Object>();
 			paper.put("studentNo", studentNo);
