@@ -58,12 +58,15 @@
 			let day = ('0' + today.getDate()).slice(-2);
 			let date = year + '-' + month  + '-' + day;
 			// console.log(dateString);
-			for(let i = 0; testNo.length; i++) {
+			for(let i = 0; i < testNo.length; i++) {
 				testBtn[i].addEventListener('click',function(){
-					if (testDate[i].innerHTML != date) {
-						alert('지금은 시험응시 가능기간이 아닙니다.');
-						event.preventDefault();
-					}
+					let examDate = testDate[i].innerHTML;
+					let examLimitDate = new Date(examDate);
+		            examLimitDate.setDate(examLimitDate.getDate() + 7); // 응시 가능한 기간을 1주일로 제한
+		            if (today < examDate || today > examLimitDate) {
+		                alert('지금은 시험응시 가능기간이 아닙니다.');
+		                event.preventDefault();
+		            }
 				});
 			}
 		});
@@ -96,7 +99,7 @@
 					<tr>
 						<td><span class="testNo">${s.testNo}</span></td>
 						<td>${s.testTitle}</td>
-						<td><span class="testDate">${s.testDate}</span></td>
+						<td><span class="testDate">${s.testDate}</span>~ ${java.time.LocalDate.parse(s.testDate).plusDays(7)}</td>
 						<c:choose>		
 							<c:when test="${answered}">
 								<td><a href="${pageContext.request.contextPath}/student/test/paper/testPaperList?testNo=${s.testNo}&studentNo=${loginStudent.studentNo}">답안지</a></td>

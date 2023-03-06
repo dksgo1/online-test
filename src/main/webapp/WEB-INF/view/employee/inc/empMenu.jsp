@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div>
+<style>
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: #333;
+		padding: 10px;
+	}
+	.header a {
+		color: #fff;
+		text-decoration: none;
+		margin-right: 20px;
+	}
+	.header a:hover {
+		color: #f2f2f2;
+	}
+</style>
+<div class="header">
 	<!-- 등록시 ID체크(employee + teacher + student) -->
 	<a href="${pageContext.request.contextPath}/employee/empList">사원관리</a>
 	

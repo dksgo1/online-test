@@ -98,7 +98,7 @@ public class StudentController {
 	public String student(Model model 
 								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
 								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage 
-								, @RequestParam(value="searcWord", defaultValue = "") String searchWord) { 
+								, @RequestParam(value="searchWord", defaultValue = "") String searchWord) { 
 
 		log.debug(currentPage+" <-currentPage");
 		log.debug(rowPerPage+" <-rowPerPage");

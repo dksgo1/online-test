@@ -93,7 +93,7 @@ public class EmployeeController {
 	public String empList(Model model 
 								, @RequestParam(value="currentPage", defaultValue = "1") int currentPage
 								, @RequestParam(value="rowPerPage", defaultValue = "10") int rowPerPage
-							    , @RequestParam(value="searcWord", defaultValue = "") String searchWord) { 
+							    , @RequestParam(value="searchWord", defaultValue = "") String searchWord) { 
 								// int currentPage = request.getParameter("currentPage");
 	
 		log.debug(currentPage+" <-currentPage");

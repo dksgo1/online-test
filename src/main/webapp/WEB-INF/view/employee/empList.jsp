@@ -49,7 +49,6 @@
 	}
 	a:hover
 	
-	/* 페이징을 가운데 정렬 */
 	.pagination {
 	  display: flex;
 	  justify-content: center;
@@ -74,6 +73,20 @@
 		color: #ddd;
 		pointer-events: none;
 	}
+	.addEmp {
+		background-color: #4CAF50;
+		border: none;
+		color: white;
+		padding: 10px 20px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin-top: 10px;
+		margin-bottom: 5px;
+		margin-left: 140px;
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -82,8 +95,8 @@
 		<c:import url="/WEB-INF/view/employee/inc/empMenu.jsp"></c:import>
 	</div>
 	<h1>Employee List</h1>
-	<a href="${pageContext.request.contextPath}/employee/addEmp">사원등록</a>
-	<table border="1">
+	<a href="${pageContext.request.contextPath}/employee/addEmp" class="addEmp">사원등록</a>
+	<table>
 		<tr>
 			<th>empId</th>
 			<th>empName</th>
